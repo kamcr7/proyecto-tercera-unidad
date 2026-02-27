@@ -1,5 +1,3 @@
-from masonite.foundation import Application
-from bootstrap import application
+from bootstrap.app import application
 
-app = Application(application)
-application = app.wsgi()
+app = application
