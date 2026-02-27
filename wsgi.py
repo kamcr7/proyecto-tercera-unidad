@@ -1,5 +1,4 @@
 # wsgi.py
-import config.application as cfg
+from Kernel import application
 
-# intenta "application" y si no existe usa "app"
-app = getattr(cfg, "application", None) or getattr(cfg, "app")
+app = application
