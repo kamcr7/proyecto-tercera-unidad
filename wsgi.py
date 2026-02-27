@@ -1,4 +1,5 @@
-# wsgi.py (en la raíz del proyecto)
-from config.application import application
+# wsgi.py
+import config.application as cfg
 
-app = application
+# intenta "application" y si no existe usa "app"
+app = getattr(cfg, "application", None) or getattr(cfg, "app")
