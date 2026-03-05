@@ -1,17 +1,17 @@
-# wsgi.py
 import os
 
-from masonite.foundation import App
-from Kernel import Kernel
+# Render/Heroku style: PORT is set by the platform
+os.environ.setdefault("APP_ENV", os.getenv("APP_ENV", "production"))
 
-# (opcional pero recomendado)
-os.environ.setdefault("APP_ENV", "production")
+from bootstrap.kernel import Kernel
+from masonite.foundation import Application
 
-# crea la app
-application = App()
 
-# registra el kernel (carga config, rutas, middleware, etc.)
+# Create the Masonite application container
+application = Application()
+
+# Register the framework (routes, providers, etc.)
 Kernel(application).register()
 
-# gunicorn necesita "app"
+# Gunicorn looks for `app` by default in your command: gunicorn wsgi:app
 app = application
